@@ -24,5 +24,14 @@ module.exports = {
 	},
 	pushLoginUser : function(userData){
 		session.user_id = userData.id;
+	},
+	getUser : function(userId){
+		return scheme
+		.users
+		.findOne({
+			where : {
+				id : userId,
+			}
+		});
 	}
 };

@@ -10,17 +10,28 @@
 		<!-- main container -->
 		<div class='container'>
 			<!-- header -->
-			<% if (showHeader == true) { %>
+			<% if (isLoggedin == true) { %>
 			 <% include partials/header.html %>
 			<% } %>
 			<!-- /. -->
 			
 			<!-- content -->
-			<div class="content clearfix" style="margin-top:60px;">
-				<%- include(content) %>
+			<div class="content clearfix" style="margin-top:70px;">
+				<% if (isLoggedin == true) { %>
+				<div class="row">
+					<div class="col-xs-8">
+						<%- include(content) %>
+					</div>
+					<div class="col-xs-4">
+						<% include partials/rss_feed.html %>
+					</div>
+				</div>
+				<% } else { %>
+						<%- include(content) %>
+				<% } %>
 			</div>
 			<!-- /. -->
-
+		
 			<!-- footer -->
 			<% include partials/footer.html %>
 			<!-- /. -->
