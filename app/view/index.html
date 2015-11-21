@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><%= pageTitle %></title>
 	<% for ( var i = 0; i < styles.length; i++) { %><link rel="stylesheet" href="<%= styles[i] %>"><% } %>
-	<% for ( var i = 0; i < scripts.length; i++) { %><link rel="stylesheet" href="<%= scripts[i] %>"><% } %>
+	<% for ( var i = 0; i < scripts.length; i++) { %><script src="<%= scripts[i] %>" type="text/javascript"></script><% } %>
 </head>
 <body>
 		<!-- main container -->

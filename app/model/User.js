@@ -1,0 +1,28 @@
+var scheme   = require("./scheme.js");
+var session  = require("client-sessions");
+
+module.exports = {
+	createUser : function (userData) {
+		return scheme
+		.users
+		.create({
+			name : userData.name,
+	    email : userData.email,
+	    password : userData.password,
+	    status : 1
+		});
+	},
+	loginUser : function(userData){
+		return scheme
+		.users
+		.findOne({
+			where : {
+				email : userData.email,
+	    	password : userData.password
+			}
+		});
+	},
+	pushLoginUser : function(userData){
+		session.user_id = userData.id;
+	}
+};

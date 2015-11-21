@@ -1,17 +1,56 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">LOGIN</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" action='' method="POST" id="user-login-form"> 
+          <fieldset> 
+
+            <div class="control-group"> 
+              <!-- E-mail --> 
+              <label class="control-label" for="email">E-mail</label> 
+              <div class="controls"> 
+                <input type="text" id="email" name="email" placeholder="" class="input-xlarge  form-control"> 
+                <p class="help-block">Please provide your E-mail</p> 
+              </div> 
+            </div> 
+              
+            <div class="control-group"> 
+              <!-- Password--> 
+              <label class="control-label" for="password">Password</label> 
+              <div class="controls"> 
+                <input type="password" id="password" name="password" placeholder="" class="input-xlarge  form-control">
+                <p class="help-block">Please provide your Password</p>  
+              </div> 
+            </div> 
+
+            <div class="control-group"> 
+              <!-- Button --> 
+              <div class="controls"> 
+                <button type="button" class="btn btn-success chat-login-user">LOGIN</button> 
+              </div> 
+            </div> 
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">REGISTRATION</h3>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal" action='' method="POST"> 
+        <form class="form-horizontal" action='' method="POST" id="user-register-form"> 
           <fieldset> 
             <div class="control-group"> 
               <!-- Username --> 
-              <label class="control-label" for="username">Username</label> 
+              <label class="control-label" for="username">Fullname</label> 
               <div class="controls"> 
-                <input type="text" id="username" name="username" placeholder="" class="input-xlarge form-control"> 
+                <input type="text" id="username" name="fname" placeholder="" class="input-xlarge form-control"> 
                 <p class="help-block">Username can contain any letters or numbers, without spaces</p> 
               </div> 
             </div> 
@@ -46,48 +85,9 @@
             <div class="control-group"> 
               <!-- Button --> 
               <div class="controls"> 
-                <button class="btn btn-success">REGISTER</button> 
+                <button type="button" class="btn btn-success chat-register-user">REGISTER</button> 
               </div> 
             </div> 
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">LOGIN</h3>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal" action='' method="POST"> 
-          <fieldset> 
-
-            <div class="control-group"> 
-              <!-- E-mail --> 
-              <label class="control-label" for="email">E-mail</label> 
-              <div class="controls"> 
-                <input type="text" id="email" name="email" placeholder="" class="input-xlarge  form-control"> 
-                <p class="help-block">Please provide your E-mail</p> 
-              </div> 
-            </div> 
-              
-            <div class="control-group"> 
-              <!-- Password--> 
-              <label class="control-label" for="password">Password</label> 
-              <div class="controls"> 
-                <input type="password" id="password" name="password" placeholder="" class="input-xlarge  form-control">
-                <p class="help-block">Please provide your Password</p>  
-              </div> 
-            </div> 
-
-            <div class="control-group"> 
-              <!-- Button --> 
-              <div class="controls"> 
-                <button class="btn btn-success">LOGIN</button> 
-              </div> 
-            </div> 
-
           </fieldset>
         </form>
       </div>

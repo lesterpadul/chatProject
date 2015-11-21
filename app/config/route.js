@@ -1,8 +1,8 @@
 // declare init
-var path       = require('path');
-var dirName    = path.dirname(require.main.filename);
-var init = require(dirName + "/app/config/init.js");
-var controllers = require(dirName + "/app/controller/CommonController.js");
+var path    = require('path');
+var dirName = path.dirname(require.main.filename);
+var init    = require(dirName + "/app/config/init.js");
+var _       = require('underscore');
 
 // set styles and scripts
 var data = {
@@ -10,7 +10,8 @@ var data = {
 		"https://code.jquery.com/jquery-2.1.4.min.js",
 		"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
 		"http://momentjs.com/downloads/moment.min.js",
-		"http://localhost:8081/socket.io/socket.io.js"
+		init.baseUrl + "/socket.io/socket.io.js",
+		init.baseUrl + "/webroot/js/socket.js"
 	],
 	styles : [
 		"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css",
@@ -25,6 +26,9 @@ var data = {
 init.app.get('/', function (req, res) {
 	data.content = "landing/login.html";
 	data.showHeader = false;
+	if (_.lastIndexOf(data.scripts, init.baseUrl + "/webroot/js/landing_script.js") < 0) {
+		data.scripts.push(init.baseUrl + "/webroot/js/landing_script.js");
+	}
 	res.render("index.html", data);
 });
 
