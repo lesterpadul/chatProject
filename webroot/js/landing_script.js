@@ -10,6 +10,7 @@ $(document).ready(function(){
 	.on('click', function(){
 		var login = $('#user-login-form').serialize();
 		socket.emit('loginUser', login, function(data){
+			window.location.href = "/home";
 		});
 	});
 

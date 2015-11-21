@@ -32,6 +32,32 @@ init.app.get('/', function (req, res) {
 	res.render("index.html", data);
 });
 
+// get index
+init.app.get('/home', function (req, res) {
+	data.content = "home/index.html";
+	data.selectedHomeMenu = 'newsfeed';
+	res.render("index.html", data);
+});
+
+// get home index
+init.app.get('/home/:page', function (req, res) {
+	data.content = "home/"+req.params.page+".html";
+	data.selectedHomeMenu = req.params.page;
+	res.render("index.html", data);
+});
+
+// get home index
+init.app.get('/home/profile/:id', function (req, res) {
+	data.content = "home/profile.html";
+	data.user_id = req.params.page;
+	res.render("index.html", data);
+});
+
+// get home index
+init.app.get('/signout', function (req, res) {
+	res.redirect('/');
+});
+
 // catch 404!
 init.app.get('*', function (req, res) {
 	data.content = "errors/error_page_not_found.html";
