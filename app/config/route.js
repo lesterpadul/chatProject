@@ -60,7 +60,8 @@ init.app.get('/signout', function (req, res) {
 
 // get home index
 init.app.post('/upload/image', function (req, res) {
-	console.log(req);
+	console.log(req.body);
+	res.send("test");
 });
 
 // catch 404!

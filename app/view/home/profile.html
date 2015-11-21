@@ -1,5 +1,14 @@
-<form enctype="multipart/form-data" method="POST" action="/upload/image">
+<form enctype="multipart/form-data" method="POST" action="/upload/image" id="uploadImageForm">
 	<input type="file" name="profile_image">
 	<input type="hidden" name="profile_id" value="<%- user_id %>">
-	<button class="btn btn-primary update-profile">update</button>
 </form>
+
+<button class="btn btn-primary update-profile">update</button>
+
+<script>
+	$(document).ready(function(){
+		$('.update-profile')
+		.click(function(){
+		});
+	});
+</script>	
