@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= pageTitle %></title>
+	<% for ( var i = 0; i < styles.length; i++) { %><link rel="stylesheet" href="<%= styles[i] %>"><% } %>
+	<% for ( var i = 0; i < scripts.length; i++) { %><link rel="stylesheet" href="<%= scripts[i] %>"><% } %>
+</head>
+<body>
+		<!-- main container -->
+		<div class='container'>
+			<!-- header -->
+			<% if (showHeader == true) { %>
+			 <% include partials/header.html %>
+			<% } %>
+			<!-- /. -->
+			
+			<!-- content -->
+			<div class="content clearfix" style="margin-top:60px;">
+				<%- include(content) %>
+			</div>
+			<!-- /. -->
+
+			<!-- footer -->
+			<% include partials/footer.html %>
+			<!-- /. -->
+		</div>
+		<!-- /. -->
+</body>
+</html>

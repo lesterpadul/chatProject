@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	<!-- socket.io -->
+	<script src="http://momentjs.com/downloads/moment.min.js"></script>
+	<script src="http://localhost:8081/socket.io/socket.io.js"></script>
+	<style>
+		.individual-chat{
+			padding: 5px;
+		}
+		.individual-chat .chat-user{
+			text-decoration: underline;
+			margin-bottom:5px;
+		}
+		.chat-container{
+			max-height: 600px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			min-height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<% include layout.html %>
+	<!-- container -->
+	<div class="container well well-sm" style="margin-top:20px;">
+		<!-- footer section -->
+		<form action="" method="POST" role="form" id="user-message-form">
+		<div class="row">
+			<div class="col-xs-4">
+				<label>Name*</label>
+				<input type="text" class="form-control" name="message_name">
+			</div>
+			<div class="col-xs-8">
+				<label>Message*</label>
+				<div class="input-group">
+					<input type="text" class="form-control" name="message_content">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-primary" id="user-message-send">
+							<i class="fa fa-send"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
+		<!-- /. -->
+
+		<hr style="margin-top:10px; margin-bottom:10px;">
+			
+		<!-- row -->
+		<div class="row" style="padding-top:10px;">
+			<div class="col-xs-12">
+				<div class="chat-container">
+					<div class="individual-chat" style="display: none;">
+						<div class="row">
+							<div class="col-xs-8 chat-user" style="font-weight:bold; font-size:18px;">
+								Lester
+							</div>
+							<div class="col-xs-4 text-right">
+								<span class="chat-time">11/17/2015</span>
+								<i class="fa fa-time"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 chat-content">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam tempore quod mollitia illo recusandae fugiat eligendi, officiis pariatur voluptatem molestias laudantium repudiandae, ipsa, sit, dignissimos animi minima. Ab, libero, nihil.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /. -->
+	</div>
+	<!-- /. -->
+	<script>
+		var socket = false;
+
+		// on ready
+		$(document)
+		.ready(function(){
+			// initialize socket
+			initSocket();
+
+			// send message
+			$('#user-message-send')
+			.off('click')
+			.on('click', function(){
+				sendMessage();
+			});
+
+			$("[name='message_content']").keypress(function(event){
+				var keycode = (event.keyCode ? event.keyCode : event.which);
+				if(keycode == '13') {
+					sendMessage();
+				}
+			});
+		});
+
+		// send message
+		function sendMessage(){
+			var mName = $.trim($("[name='message_name']").val());
+			var mContent = $.trim($("[name='message_content']").val());
+
+			// check if name or content is empty
+			if (mName.length == 0 || mContent.length == 0) {
+				alert("Name or content must not be empty!");
+				return false;
+			}
+
+			// send message
+			socket.emit("sendMessage", {message_name : mName, message_content : mContent});
+		}
+
+		// initialize socket
+		function initSocket(){
+			socket = io.connect();
+			// when socket is ready
+			socket.on("new_message", function(data){
+				showIndividualChat(data);
+			});
+		}
+
+		// show individual chat
+		function showIndividualChat(chat){
+			var clone = $('.individual-chat:eq(0)').clone();
+			clone.show();
+			clone.find('.chat-user').html(chat.message_name);
+			clone.find('.chat-content').html(chat.message_content);
+			clone.find('.chat-time').html(moment().format("M/D/YYYY H:m"));
+			$('.chat-container').prepend(clone);
+		}
+	</script>
+</body>
+</html>
