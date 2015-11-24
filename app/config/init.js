@@ -12,7 +12,7 @@ var baseUrl    = "http://localhost:8081";
 
 var middleWare = session({
 	cookieName : 'session',
-  secret: 'karekate',
+  secret: 'karenkate',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
   resave: true,

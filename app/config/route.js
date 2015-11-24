@@ -62,6 +62,7 @@ init.app.get('/page/:page', function (req, res) {
 		res.redirect("/404");
 	}
 
+	// render index
 	res.render("index.html", data);
 });
 
