@@ -9,6 +9,8 @@ var port       = 8081;
 var path       = require('path');
 var dirName    = path.dirname(require.main.filename);
 var baseUrl    = "http://localhost:8081";
+var multer     = require("multer");
+var upload     = multer({ dest : dirName + "uploads/"});
 
 var middleWare = session({
 	cookieName : 'session',
@@ -45,3 +47,5 @@ exports.model       = require(dirName + "/app/model/CommonModel.js");
 exports.util        = require(dirName + "/app/lib/util.js");
 exports.registry    = require(dirName + "/app/model/scheme.js");
 exports.activeUsers = [];
+exports.upload      = upload;
+exports.multer      = multer;

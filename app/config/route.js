@@ -61,9 +61,21 @@ init.app.get('/page/:page', function (req, res) {
 	if (_.lastIndexOf(data.validMenus, data.selectedMenu) < 0) {
 		res.redirect("/404");
 	}
-
-	// render index
-	res.render("index.html", data);
+	if (data.selectedMenu == "profile") {
+		init.registry.users
+		.findOne({
+			where : {
+				id : req.session.user_id
+			}
+		})
+		.then(function(user){
+			data.user = user;
+			res.render("index.html", data);
+		});
+	} else {
+		// render index
+		res.render("index.html", data);
+	}
 });
 
 /*get home index*/
@@ -83,7 +95,12 @@ init.app.get('*', function (req, res) {
 /*****************/
 /***** POST ******/
 /*****************/
-/*login*/
+/**
+ * [description]
+ * @param  {[type]} req         [description]
+ * @param  {[type]} res){		var loginData     [description]
+ * @return {[type]}             [description]
+ */
 init.app.post('/user/signin', function(req, res){
 	// login data
 	var loginData = req.body;
@@ -104,7 +121,12 @@ init.app.post('/user/signin', function(req, res){
 	});
 });
 
-/*register*/
+/**
+ * [description]
+ * @param  {[type]} req         [description]
+ * @param  {[type]} res){		var registerData  [description]
+ * @return {[type]}             [description]
+ */
 init.app.post('/user/register', function(req, res){
 	// register data
 	var registerData = data;
@@ -118,3 +140,15 @@ init.app.post('/user/register', function(req, res){
 		res.json({error:true, content:error});
 	});
 });
+
+/**
+ * [description]
+ * @param  {[type]} req      [description]
+ * @param  {[type]} res){} [description]
+ * @return {[type]}          [description]
+ */
+init.app.post('/user/profile/update', init.upload.single('profile_image'), function(req, res){
+	console.log(req.body);
+	console.log(req.file);
+	res.send("ok!");
+})

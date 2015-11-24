@@ -17,12 +17,15 @@
 			<% } else { %>
 			<div class="col-xs-8">
 				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Panel title</h3>
+				  </div>
 				  <div class="panel-body">
-						<%- include(content) %><%- include(content) %>
+						<%- include(content) %>
 				  </div>
 				</div>
 			</div>
-			<div class="col-xs-4"><%- include(content) %><% include partials/rss_feed.html %></div>
+			<div class="col-xs-4"><% include partials/rss_feed.html %></div>
 			<% } %>
 		</div>
 
