@@ -10,7 +10,18 @@ var path       = require('path');
 var dirName    = path.dirname(require.main.filename);
 var baseUrl    = "http://localhost:8081";
 var multer     = require("multer");
-var upload     = multer({ dest : dirName + "uploads/"});
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, dirName + '/webroot/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+var upload     = multer({ storage : storage});
 
 var middleWare = session({
 	cookieName : 'session',
