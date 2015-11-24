@@ -34,12 +34,14 @@ io.use(function(socket, next) {
 server.listen(port);
 
 // export objects
-exports.express = express;
-exports.app     = app;
-exports.server  = server;
-exports.io      = io;
-exports.socket  = socket;
-exports.baseUrl = baseUrl;
-exports.session = session;
-exports.model   = require(dirName + "/app/model/CommonModel.js");
-exports.util    = require(dirName + "/app/lib/util.js");
+exports.express     = express;
+exports.app         = app;
+exports.server      = server;
+exports.io          = io;
+exports.socket      = socket;
+exports.baseUrl     = baseUrl;
+exports.session     = session;
+exports.model       = require(dirName + "/app/model/CommonModel.js");
+exports.util        = require(dirName + "/app/lib/util.js");
+exports.registry    = require(dirName + "/app/model/scheme.js");
+exports.activeUsers = [];

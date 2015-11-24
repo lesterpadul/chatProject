@@ -42,7 +42,7 @@ init.app.get('/', function (req, res) {
 	data.styles = init.util.pushToArray(data.styles, [init.baseUrl + "/webroot/css/landing_css.css"]);
 
 	console.log(data.scripts);
-	
+
 	// render view
 	res.render("index.html", data);
 });
@@ -53,6 +53,9 @@ init.app.get('/page/:page', function (req, res) {
 	data.isLoggedIn   = init.util.isUserLoggedin(req.session);
 	data.selectedMenu = req.params.page;
 	data.validMenus   = init.util.validMenus();
+
+	// update js
+	data.scripts = init.util.pushToArray(data.scripts, [init.baseUrl + "/webroot/js/main.js"]);
 
 	// check if valid page
 	if (_.lastIndexOf(data.validMenus, data.selectedMenu) < 0) {

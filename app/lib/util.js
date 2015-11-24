@@ -20,5 +20,8 @@ module.exports = {
 			}
 		}
 		return array;
+	},
+	globalMessageForm : function (){
+		return {msg : "", user : {}, timestamp: (new Date()).getTime()};
 	}
 };
