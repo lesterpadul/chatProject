@@ -32,27 +32,32 @@ init.app.get('/', function (req, res) {
 	data.content = "landing/login.html";
 	data.isLoggedIn = init.util.isUserLoggedin(req.session);
 
+	// check if logged in
 	if (data.isLoggedIn) {
 		res.redirect('/home');
 	}
 
-	// set js script of page
-	if (_.lastIndexOf(data.scripts, init.baseUrl + "/webroot/js/landing_script.js") < 0) {
-		data.scripts.push(init.baseUrl + "/webroot/js/landing_script.js");
-	}
-	// set style of page
-	if (_.lastIndexOf(data.styles, init.baseUrl + "/webroot/css/landing_css.css") < 0) {
-		data.styles.push(init.baseUrl + "/webroot/css/landing_css.css");
-	}
+	// push to scripts
+	data.scripts = init.util.pushToArray(data.scripts, [init.baseUrl + "/webroot/js/landing_script.js"]);
+	data.styles = init.util.pushToArray(data.styles, [init.baseUrl + "/webroot/css/landing_css.css"]);
+
+	console.log(data.scripts);
+	
 	// render view
 	res.render("index.html", data);
 });
 
 /*get index*/
 init.app.get('/page/:page', function (req, res) {
-	data.content = req.params.page + "/index.html";
-	data.isLoggedIn = init.util.isUserLoggedin(req.session);
+	data.content      = req.params.page + "/index.html";
+	data.isLoggedIn   = init.util.isUserLoggedin(req.session);
 	data.selectedMenu = req.params.page;
+	data.validMenus   = init.util.validMenus();
+
+	// check if valid page
+	if (_.lastIndexOf(data.validMenus, data.selectedMenu) < 0) {
+		res.redirect("/404");
+	}
 
 	res.render("index.html", data);
 });

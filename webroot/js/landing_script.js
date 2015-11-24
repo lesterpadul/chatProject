@@ -13,7 +13,7 @@ $(document).ready(function(){
 			'/user/signin',
 			login, 
 			function(data){
-				if (data.error == false) { window.location.href = "/page/nf"; }
+				if (data.error == false) { window.location.href = "/page/home"; }
 			}
 		);
 	});
