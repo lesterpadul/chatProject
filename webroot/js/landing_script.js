@@ -9,9 +9,13 @@ $(document).ready(function(){
 	.off('click')
 	.on('click', function(){
 		var login = $('#user-login-form').serialize();
-		socket.emit('loginUser', login, function(data){
-			window.location.href = "/home";
-		});
+		$.post(
+			'/user/signin',
+			login, 
+			function(data){
+				if (data.error == false) { window.location.href = "/page/nf"; }
+			}
+		);
 	});
 
 	// when the register user is clicked
@@ -19,8 +23,13 @@ $(document).ready(function(){
 	.off('click')
 	.on('click', function(){
 		var register = $('#user-register-form').serialize();
-		socket.emit('registerUser', register, function(data){
-			console.log(data);
-		});
-	})
+		$.post(
+			'/user/register',
+			register, 
+			function(data){
+				console.log(data);
+			}
+		);
+	});
+	
 });

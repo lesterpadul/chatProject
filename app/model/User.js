@@ -33,5 +33,11 @@ module.exports = {
 				id : userId,
 			}
 		});
+	},
+	isLoggedin : function(session){
+		if (typeof session.user_id == 'undefined') {
+			return false;
+		}
+		return true;
 	}
 };

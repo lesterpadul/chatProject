@@ -7,35 +7,27 @@
 	<% for ( var i = 0; i < scripts.length; i++) { %><script src="<%= scripts[i] %>" type="text/javascript"></script><% } %>
 </head>
 <body>
-		<!-- main container -->
-		<div class='container'>
-			<!-- header -->
-			<% if (isLoggedin == true) { %>
-			 <% include partials/header.html %>
-			<% } %>
-			<!-- /. -->
-			
-			<!-- content -->
-			<div class="content clearfix" style="margin-top:70px;">
-				<% if (isLoggedin == true) { %>
-				<div class="row">
-					<div class="col-xs-8">
-						<%- include(content) %>
-					</div>
-					<div class="col-xs-4">
-						<% include partials/rss_feed.html %>
-					</div>
-				</div>
-				<% } else { %>
-						<%- include(content) %>
-				<% } %>
-			</div>
-			<!-- /. -->
+	<!-- main container -->
+	<div class='container body'>
 		
-			<!-- footer -->
-			<% include partials/footer.html %>
-			<!-- /. -->
+		<div class="row">
+			<% include partials/header.html %>
+			<% if (!isLoggedIn) { %>
+			<div class="col-xs-12"><%- include(content) %></div>
+			<% } else { %>
+			<div class="col-xs-8">
+				<div class="panel panel-info">
+				  <div class="panel-body">
+						<%- include(content) %><%- include(content) %>
+				  </div>
+				</div>
+			</div>
+			<div class="col-xs-4"><%- include(content) %><% include partials/rss_feed.html %></div>
+			<% } %>
 		</div>
-		<!-- /. -->
+
+		<% include partials/footer.html %>
+	</div>
+	<!-- /. -->
 </body>
 </html>

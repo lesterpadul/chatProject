@@ -1,159 +1,42 @@
-<div class="row">
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">LOGIN</h3>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal" action='' method="POST" id="user-login-form"> 
-          <fieldset> 
-
-            <div class="control-group"> 
-              <!-- E-mail --> 
-              <label class="control-label" for="email">E-mail</label> 
-              <div class="controls"> 
-                <input type="text" id="email" name="email" placeholder="" class="input-xlarge  form-control"> 
-                <p class="help-block">Please provide your E-mail</p> 
-              </div> 
-            </div> 
-              
-            <div class="control-group"> 
-              <!-- Password--> 
-              <label class="control-label" for="password">Password</label> 
-              <div class="controls"> 
-                <input type="password" id="password" name="password" placeholder="" class="input-xlarge  form-control">
-                <p class="help-block">Please provide your Password</p>  
-              </div> 
-            </div> 
-
-            <div class="control-group"> 
-              <!-- Button --> 
-              <div class="controls"> 
-                <button type="button" class="btn btn-success chat-login-user">LOGIN</button> 
-              </div> 
-            </div> 
-
-          </fieldset>
-        </form>
-      </div>
-    </div>
+<div id="wrapper">
+  <div id="login" class="animate form">
+    <section class="login_content">
+      <form id="user-login-form">
+        <h1>Login Form</h1>
+        <div>
+            <input type="text" id="email" name="email" placeholder="Email Address" class="input-xlarge  form-control"> 
+        </div>
+        <div>
+            <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge  form-control">
+        </div>
+        <div>
+            <a class="btn btn-default submit chat-login-user" href="javascript:void(0);">LOGIN</a>
+        </div>
+        <div class="clearfix"></div>
+      </form>
+    </section>
   </div>
-  <div class="col-sm-8">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">REGISTRATION</h3>
-      </div>
-      <div class="panel-body">
-        <form class="form-horizontal" action='' method="POST" id="user-register-form"> 
-          <fieldset> 
-            <div class="control-group"> 
-              <!-- Username --> 
-              <label class="control-label" for="username">Fullname</label> 
-              <div class="controls"> 
-                <input type="text" id="username" name="fname" placeholder="" class="input-xlarge form-control"> 
-                <p class="help-block">Username can contain any letters or numbers, without spaces</p> 
-              </div> 
-            </div> 
-
-            <div class="control-group"> 
-              <!-- E-mail --> 
-              <label class="control-label" for="email">E-mail</label> 
-              <div class="controls"> 
-                <input type="text" id="email" name="email" placeholder="" class="input-xlarge  form-control"> 
-                <p class="help-block">Please provide your E-mail</p> 
-              </div> 
-            </div> 
-              
-            <div class="control-group"> 
-              <!-- Password--> 
-              <label class="control-label" for="password">Password</label> 
-              <div class="controls"> 
-                <input type="password" id="password" name="password" placeholder="" class="input-xlarge  form-control"> 
-                <p class="help-block">Password should be at least 4 characters</p> 
-              </div> 
-            </div> 
-
-            <div class="control-group"> 
-              <!-- Password --> 
-              <label class="control-label" for="password_confirm">Password (Confirm)</label> 
-              <div class="controls"> 
-                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge  form-control"> 
-                <p class="help-block">Please confirm password</p> 
-              </div> 
-            </div> 
-
-            <div class="control-group"> 
-              <!-- Button --> 
-              <div class="controls"> 
-                <button type="button" class="btn btn-success chat-register-user">REGISTER</button> 
-              </div> 
-            </div> 
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> 
-<div class="container sign-in-up" style="display:none;">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <br>
-      <!-- Nav tabs -->
-      <div class="text-center">
-        <div class="btn-group">
-          <a href="#new" role="tab" data-toggle="tab" class="big btn btn-primary"><i class="fa fa-plus"></i> New User</a>
-          <a href="#user" role="tab" data-toggle="tab" class="big btn btn-danger"><i class="fa fa-user"></i> I have account</a>
+  <div id="register" class="animate form">
+    <section class="login_content">
+      <form id="user-register-form">
+        <h1>Create Account</h1>
+        <div>
+          <input type="text" id="username" name="fname" placeholder="Name" class="input-xlarge form-control"> 
         </div>
-      </div>
-      <p class="click2select">Click to select</p>
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="new">
-          <br>
-          <fieldset>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="Email Address" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Password" type="password">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Confirm Password" id="" type="password">
-              </div>
-            </div>
-          </fieldset>
-          <hr>
-          <button class="btn btn-primary btn-lg btn-block">REGISTER</button>
+        <div>
+          <input type="text" id="email" name="email" placeholder="Email Address" class="input-xlarge  form-control"> 
         </div>
-        <div class="tab-pane fade" id="user">
-          <br>
-          <fieldset>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <i class="fa fa-envelope"></i>
-                <input class="form-control input-lg" placeholder="Email Address" type="text">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="right-inner-addon">
-                <i class="fa fa-key"></i>
-                <input class="form-control input-lg" placeholder="Password" type="password">
-              </div>
-            </div>
-          </fieldset>
-          <br>
-          <div class=" text-center">
-            <button class="btn btn-primary">LOGIN</button>
-          </div>
+        <div>
+          <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge  form-control">
         </div>
-      </div>
-    </div>
+        <div>
+          <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm Password" class="input-xlarge  form-control">
+        </div>
+        <div>
+          <a class="btn btn-default submit chat-register-user" href="javascript:void(0);">SUBMIT</a>
+        </div>
+        <div class="clearfix"></div>
+      </form>
+    </section>
   </div>
 </div>

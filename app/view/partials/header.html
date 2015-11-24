@@ -1,32 +1,36 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<ul class="nav navbar-nav">
-		<li class="<% if (selectedHomeMenu == 'newsfeed') { %>active<% } %>">
-			<a href="/home/newsfeed">
-				<i class="fa fa-list"></i>
-				&nbsp;Newsfeed
-			</a>
-		</li>
-		<li class="<% if (selectedHomeMenu == 'profile') { %>active<% } %>">
-			<a href="/home/profile">
-				<i class="fa fa-user"></i>
-				&nbsp;Profile
-			</a>
-		</li>
-		<li class="<% if (selectedHomeMenu == 'friends') { %>active<% } %>">
-			<a href="/home/friends">
-				<i class="fa fa-group"></i>
-				&nbsp;Friends
-			</a>
-		</li>
-	</ul>
-	<ul class="nav navbar-nav pull-right">
-		<li class=''>
-			<a href="/signout">
-				<i class="fa fa-sign-out"></i>
-				&nbsp;Logout
-			</a>
-		</li>
-	</ul>
-</nav>
-
-
+<% if (isLoggedIn) { %>
+<br>
+<ul class="nav nav-tabs" style="">
+  <li role="presentation" <% if (selectedMenu=="home") {%> class="active"  <%}%>>
+  	<a href="/page/home">
+  		<i class="fa fa-home"></i>
+  		&nbsp;Home
+  	</a>
+  </li>
+  <li role="presentation" <% if (selectedMenu=="profile") {%> class="active"  <%}%>>
+  	<a href="/page/profile">
+  		<i class="fa fa-user"></i>
+  		&nbsp;Profile
+  	</a>
+  </li>
+  <li role="presentation" <% if (selectedMenu=="messages") {%> class="active"  <%}%>>
+  	<a href="/page/messages">
+  		<i class="fa fa-envelope"></i>
+  		&nbsp;Messages
+  	</a>
+  </li>
+  <li role="presentation" <% if (selectedMenu=="contacts") {%> class="active"  <%}%>>
+  	<a href="/page/contacts">
+  		<i class="fa fa-phone"></i>
+  		&nbsp;Contacts
+  	</a>
+  </li>
+  <li class="pull-right">
+  	<a href="/signout">
+  		<i class="fa fa-sign-out"></i>
+  		&nbsp;Logout
+  	</a>
+  </li>
+</ul>
+<br>
+<% } %>
