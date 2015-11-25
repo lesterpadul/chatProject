@@ -68,10 +68,12 @@ init.app.get('/page/:page', function (req, res) {
 			}
 		})
 		.then(function(user){
+			init.data.panelTitle = user.name;
 			init.data.user = user;
 			res.render("index.html", init.data);
 		});
 	} else {
+		init.data.panelTitle = false;
 		// render index
 		res.render("index.html", init.data);
 	}
@@ -153,7 +155,8 @@ init.app.post('/user/profile/update', init.upload.single('profile_image'), funct
 	userData.name  = req.body.profile_name;
 	userData.email = req.body.profile_email;
 	userData.id    = req.body.profile_id;
-
+	userData.description = req.body.profile_about_me;
+	
 	// check if image exists
 	if (typeof req.file != 'undefined') {
 		userData.image = req.file.originalname;

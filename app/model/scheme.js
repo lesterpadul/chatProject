@@ -19,6 +19,7 @@ module.exports = {
     password : seq.STRING,
     status : seq.INTEGER(10),
     image : seq.STRING,
+    description : seq.STRING,
     created : seq.DATE,
     modified : seq.DATE
   }, {timestamps : false}),

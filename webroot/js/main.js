@@ -36,9 +36,6 @@ function onEmits () {
 
 	// call global chat
 	socket.on("callGlobalChat", function(data){
-
-		console.log(data);
-
 		$('.chat-text-group .chat-blabber-spinner').hide();
 		$('.chat-text-group .chat-blabber').show();
 		if (data.length !== 0 ) {

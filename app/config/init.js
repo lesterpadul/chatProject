@@ -84,5 +84,6 @@ exports.data = {
   pageTitle : "FDC Social Network",
   isLoggedIn : false,
   selectedMenu : 'nf',
-  baseUrl : baseUrl
+  baseUrl : baseUrl,
+  panelTitle : false
 };

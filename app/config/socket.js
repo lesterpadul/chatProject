@@ -44,9 +44,7 @@ init.io.on('connection', function(socket){
 			}
 			socket.emit("callGlobalChat", chatters);
 		})
-		.catch(function(err){
-			console.log(err);
-		});
+		.catch(function(err){});
 	});
 
 	socket.on("sendGlobalMessage", function(data, cb){
