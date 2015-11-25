@@ -11,8 +11,9 @@ var dirName    = path.dirname(require.main.filename);
 var baseUrl    = "http://localhost:8081";
 var multer     = require("multer");
 var crypto     = require('crypto');
-var cAlgorithm  = 'aes-256-ctr';
-var cPassword   = 'd6F3Efeq';
+var cAlgorithm = 'aes-256-ctr';
+var cPassword  = 'd6F3Efeq';
+var moment     = require("moment");
 
 // store for file uploads
 var storage = multer.diskStorage({
@@ -69,6 +70,7 @@ exports.multer      = multer;
 exports.crypto      = require('crypto');
 exports.cAlgorithm  = 'aes-256-ctr';
 exports.cPassword   = 'd6F3Efeq';
+exports.moment      = moment;
 exports.data = {
   scripts : [
     "https://code.jquery.com/jquery-2.1.4.min.js",

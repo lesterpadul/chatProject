@@ -39,6 +39,7 @@ init.io.on('connection', function(socket){
 					messageTemplate.user = chat[i].user;
 					messageTemplate.image = "";
 					messageTemplate.image = init.baseUrl + "/webroot/uploads/" + chat[i].user.image;
+					messageTemplate.timestamp = chat[i].created;
 					chatters.push(messageTemplate);
 				}
 			}
@@ -64,17 +65,18 @@ init.io.on('connection', function(socket){
 				user_id : SESSION.user_id,
 		    recipient_id : 0,
 		    message : data.msg,
-		    message_type : 0
+		    message_type : 0,
+		    created : init.moment().format("YYYY-MM-DD HH:mm:ss"),
+			  modified : init.moment().format("YYYY-MM-DD HH:mm:ss")
 			})
 			.then(function(){
 				message.msg = data.msg;
 				message.user = user;
 				message.image = init.baseUrl + "/webroot/uploads/" + user.image;
+				message.timestamp = init.moment().format("YYYY-MM-DD HH:mm:ss");
 				init.io.sockets.emit("receiveGlobalChat", message);
-				socket.emit("sendActiveUsers", {user: init.activeUsers});
 				cb();
 			});
 		});
-
 	});
 });

@@ -31,7 +31,7 @@ init.app.get('/', function (req, res) {
 	// set content page
 	init.data.content = "landing/login.html";
 	init.data.isLoggedIn = init.util.isUserLoggedin(req.session);
-
+	
 	// check if logged in
 	if (init.data.isLoggedIn) {
 		res.redirect('/home');
@@ -77,6 +77,12 @@ init.app.get('/page/:page', function (req, res) {
 		// render index
 		res.render("index.html", init.data);
 	}
+});
+
+
+/*get home index*/
+init.app.get('/api/getContacts', function (req, res) {
+	res.render("contacts/contact_individual.html", init.data);
 });
 
 /*get home index*/

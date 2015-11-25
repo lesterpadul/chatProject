@@ -1,0 +1,45 @@
+<div class="clearfix contacts-page">
+	<ul class="nav nav-pills">
+		<li role="presentation">
+	  	<a href="javascript:void(0);" class="contact-item" type=1>
+	  		My Contacts
+	  	</a>
+	  </li>
+	  <li role="presentation">
+	  	<a href="javascript:void(0);" class="contact-item" type=0>
+	  		Everyone
+	  	</a>
+	  </li>
+	</ul>
+	<div class="clearfix contacts-content">
+		
+	</div>
+</div>
+
+<script>
+	// document ready
+	$(document).ready(function(){
+		$(document)
+		.off('click', '.contacts-page a.contact-item')
+		.on('click', '.contacts-page a.contact-item', function(){
+			$('.contacts-page li[role="presentation"]').removeClass('active');
+			$(this).closest("li[role='presentation']").addClass('active');
+			var typeId = $(this).attr('type');
+			loadContacts(typeId);
+		});
+
+		// click first item
+		$('.contacts-page a.contact-item:eq(0)').click();
+	});
+
+	// load page
+	function loadContacts (typeId) {
+		$.get(
+			'/api/getContacts',
+			{typeId : typeId},
+			function (data) {
+				$('.contacts-content').html(data);
+			}
+		);
+	}
+</script>
