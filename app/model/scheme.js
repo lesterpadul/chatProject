@@ -2,7 +2,7 @@
 var seq = require("sequelize");
 
 // set connection
-var con = new seq('lester_database', 'devel', '', 'localhost');
+var con = new seq('lester_database', 'devel', '', 'localhost:8000');
 
 // exports connect
 module.exports = {
@@ -14,12 +14,33 @@ module.exports = {
       primaryKey : true,
       autoIncrement : true
     },
-    name : seq.STRING,
-    email : seq.STRING,
-    password : seq.STRING,
-    status : seq.INTEGER(10),
-    image : seq.STRING,
-    description : seq.STRING,
+    name : {
+      type : seq.STRING,
+      validate : {
+        notEmpty : true
+      }
+    },
+    email : {
+      type:seq.STRING,
+      validate : {
+        notEmpty : true
+      }
+    },
+    password : {
+      type:seq.STRING,
+      validate : {
+        notEmpty : true
+      }
+    },
+    status : {
+      type:seq.INTEGER(10)
+    },
+    image : {
+      type:seq.STRING
+    },
+    description : {
+      type:seq.STRING
+    },
     created : seq.DATE,
     modified : seq.DATE
   }, {timestamps : false}),
