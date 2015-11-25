@@ -13,7 +13,10 @@ $(document).ready(function(){
 			'/user/signin',
 			login, 
 			function(data){
-				if (data.error == false) { window.location.href = "/page/home"; }
+				if (data.error == false) { window.location.href = "/page/home"; } 
+				else { 
+					bootbox.alert("Username and password does not exist"); 
+				}
 			}
 		);
 	});
@@ -28,6 +31,12 @@ $(document).ready(function(){
 			register, 
 			function(data){
 				console.log(data);
+				if (data.error == false) { 
+					bootbox.alert("content");
+				}
+				else {
+					bootbox.alert(data.content.message);
+				}
 			}
 		);
 	});

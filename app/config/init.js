@@ -75,7 +75,8 @@ exports.data = {
     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
     "http://momentjs.com/downloads/moment.min.js",
     baseUrl + "/socket.io/socket.io.js",
-    baseUrl + "/webroot/js/socket.js"
+    baseUrl + "/webroot/js/socket.js",
+    baseUrl + "/webroot/js/bootbox.min.js"
   ],
   styles : [
     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css",
