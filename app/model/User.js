@@ -1,32 +1,40 @@
-var scheme   = require("./scheme.js");
-var session  = require("client-sessions");
+// declare init
+var path    = require('path');
+var dirName = path.dirname(require.main.filename);
+var init    = require(dirName + "/app/config/init.js");
 
 module.exports = {
 	createUser : function (userData) {
-		return scheme
+		return init.registry
 		.users
 		.create({
 			name : userData.name,
 	    email : userData.email,
-	    password : userData.password,
+	    password : init.util.encryptString(userData.password),
 	    status : 1
 		});
 	},
+	updateUser : function (userData) {
+		return init.registry
+		.users
+		.update(userData,{
+			where : {
+				id : userData.id
+			}
+		});
+	},
 	loginUser : function(userData){
-		return scheme
+		return init.registry
 		.users
 		.findOne({
 			where : {
 				email : userData.email,
-	    	password : userData.password
+	    	password : init.util.encryptString(userData.password)
 			}
 		});
 	},
-	pushLoginUser : function(userData){
-		session.user_id = userData.id;
-	},
 	getUser : function(userId){
-		return scheme
+		return init.registry
 		.users
 		.findOne({
 			where : {

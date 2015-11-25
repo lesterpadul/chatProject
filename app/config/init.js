@@ -10,8 +10,11 @@ var path       = require('path');
 var dirName    = path.dirname(require.main.filename);
 var baseUrl    = "http://localhost:8081";
 var multer     = require("multer");
+var crypto     = require('crypto');
+var cAlgorithm  = 'aes-256-ctr';
+var cPassword   = 'd6F3Efeq';
 
-
+// store for file uploads
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, dirName + '/webroot/uploads')
@@ -21,8 +24,10 @@ var storage = multer.diskStorage({
   }
 })
 
+// upload
 var upload     = multer({ storage : storage});
 
+// session middleware
 var middleWare = session({
 	cookieName : 'session',
   secret: 'karenkate',
@@ -39,6 +44,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/webroot', express.static( dirName + '/webroot'));
 app.use(middleWare);
 
+// allow io to use session
 io.use(function(socket, next) {
     middleWare(socket.request, socket.request.res, next);
 });
@@ -60,3 +66,23 @@ exports.registry    = require(dirName + "/app/model/scheme.js");
 exports.activeUsers = [];
 exports.upload      = upload;
 exports.multer      = multer;
+exports.crypto      = require('crypto');
+exports.cAlgorithm  = 'aes-256-ctr';
+exports.cPassword   = 'd6F3Efeq';
+exports.data = {
+  scripts : [
+    "https://code.jquery.com/jquery-2.1.4.min.js",
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js",
+    "http://momentjs.com/downloads/moment.min.js",
+    baseUrl + "/socket.io/socket.io.js",
+    baseUrl + "/webroot/js/socket.js"
+  ],
+  styles : [
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css",
+    "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css",
+  ],
+  pageTitle : "FDC Social Network",
+  isLoggedIn : false,
+  selectedMenu : 'nf',
+  baseUrl : baseUrl
+};

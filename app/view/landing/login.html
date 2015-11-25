@@ -1,39 +1,55 @@
+<style>
+  .form-lbl{
+    font-size: 25px;
+    text-decoration: underline;
+  }
+  #wrapper{
+    max-width:500px;
+    margin:auto auto;
+    padding-top:100px;
+  }
+</style>
 <div id="wrapper">
   <div id="login" class="animate form">
     <section class="login_content">
       <form id="user-login-form">
-        <h1>Login Form</h1>
-        <div>
+        <h1 class="text-center form-lbl">Login Form</h1>
+        <br>
+        <div class="form-group">
             <input type="text" id="email" name="email" placeholder="Email Address" class="input-xlarge  form-control"> 
         </div>
-        <div>
+        <div class="form-group">
             <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge  form-control">
         </div>
-        <div>
-            <a class="btn btn-default submit chat-login-user" href="javascript:void(0);">LOGIN</a>
+        <div class="form-group text-center">
+            <a class="btn btn-primary submit chat-login-user" href="javascript:void(0);">LOGIN</a>
         </div>
         <div class="clearfix"></div>
       </form>
     </section>
   </div>
+
+  <hr>
+
   <div id="register" class="animate form">
     <section class="login_content">
       <form id="user-register-form">
-        <h1>Create Account</h1>
-        <div>
+        <h1 class="text-center form-lbl">Create Account</h1>
+        <br>
+        <div class="form-group">
           <input type="text" id="username" name="fname" placeholder="Name" class="input-xlarge form-control"> 
         </div>
-        <div>
+        <div class="form-group">
           <input type="text" id="email" name="email" placeholder="Email Address" class="input-xlarge  form-control"> 
         </div>
-        <div>
+        <div class="form-group">
           <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge  form-control">
         </div>
-        <div>
+        <div class="form-group">
           <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm Password" class="input-xlarge  form-control">
         </div>
-        <div>
-          <a class="btn btn-default submit chat-register-user" href="javascript:void(0);">SUBMIT</a>
+        <div class="form-group text-center">
+          <a class="btn btn-primary submit chat-register-user" href="javascript:void(0);">SUBMIT</a>
         </div>
         <div class="clearfix"></div>
       </form>

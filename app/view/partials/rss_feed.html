@@ -13,16 +13,17 @@
         <a href="#" class="btn btn-primary btn-sm pull-right blab-send">blab</a>
         <div class="clearfix"></div>
         <hr />
-        <ul class="media-list chat-blabber" style="display: none;">
+        <ul class="media-list chat-blabber" style="display: none; max-height:500px; overflow-y:auto;">
             <li class="media master-global" style="display:none;">
                 <a href="#" class="pull-left">
-                    <img src="assets/img/1.png" alt="" class="img-circle chatter-image">
+                    <div class="img-circle chatter-image" style="background-size:cover; height:50px; width:50px;
+                               "></div>
                 </a>
                 <div class="media-body">
                     <span class="text-muted pull-right">
                         <small class="text-muted chatter-time">30 min ago</small>
                     </span>
-                    <strong class="text-success">@ <span class="chatter-name">handlename</span></strong>
+                    <strong class="text-success">@<span class="chatter-name">handlename</span></strong>
                     <p class='chatter-content'></p>
                 </div>
             </li>

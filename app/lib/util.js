@@ -1,3 +1,6 @@
+var path    = require('path');
+var dirName = path.dirname(require.main.filename);
+var init    = require(dirName + "/app/config/init.js");
 var _ = require('underscore');
 
 module.exports = {
@@ -23,5 +26,11 @@ module.exports = {
 	},
 	globalMessageForm : function (){
 		return {msg : "", user : {}, timestamp: (new Date()).getTime()};
+	},
+	encryptString : function (text) {
+	  var cipher = init.crypto.createCipher(init.cAlgorithm,init.cPassword);
+	  var crypted = cipher.update(text,'utf8','hex')
+	  crypted += cipher.final('hex');
+	  return crypted;
 	}
 };

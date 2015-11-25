@@ -29,39 +29,38 @@ var data = {
 /*get index*/
 init.app.get('/', function (req, res) {
 	// set content page
-	data.content = "landing/login.html";
-	data.isLoggedIn = init.util.isUserLoggedin(req.session);
+	init.data.content = "landing/login.html";
+	init.data.isLoggedIn = init.util.isUserLoggedin(req.session);
 
 	// check if logged in
-	if (data.isLoggedIn) {
+	if (init.data.isLoggedIn) {
 		res.redirect('/home');
 	}
 
 	// push to scripts
-	data.scripts = init.util.pushToArray(data.scripts, [init.baseUrl + "/webroot/js/landing_script.js"]);
-	data.styles = init.util.pushToArray(data.styles, [init.baseUrl + "/webroot/css/landing_css.css"]);
-
-	console.log(data.scripts);
+	data.scripts = init.util.pushToArray(init.data.scripts, [init.baseUrl + "/webroot/js/landing_script.js"]);
+	data.styles = init.util.pushToArray(init.data.styles, [init.baseUrl + "/webroot/css/landing_css.css"]);
 
 	// render view
-	res.render("index.html", data);
+	res.render("index.html", init.data);
 });
 
 /*get index*/
 init.app.get('/page/:page', function (req, res) {
-	data.content      = req.params.page + "/index.html";
-	data.isLoggedIn   = init.util.isUserLoggedin(req.session);
-	data.selectedMenu = req.params.page;
-	data.validMenus   = init.util.validMenus();
+	init.data.content      = req.params.page + "/index.html";
+	init.data.isLoggedIn   = init.util.isUserLoggedin(req.session);
+	init.data.selectedMenu = req.params.page;
+	init.data.validMenus   = init.util.validMenus();
 
 	// update js
-	data.scripts = init.util.pushToArray(data.scripts, [init.baseUrl + "/webroot/js/main.js"]);
+	init.data.scripts = init.util.pushToArray(init.data.scripts, [init.baseUrl + "/webroot/js/main.js"]);
 
 	// check if valid page
-	if (_.lastIndexOf(data.validMenus, data.selectedMenu) < 0) {
+	if (_.lastIndexOf(init.data.validMenus, init.data.selectedMenu) < 0) {
 		res.redirect("/404");
 	}
-	if (data.selectedMenu == "profile") {
+	if (init.data.selectedMenu == "profile") {
+		console.log(init.data);
 		init.registry.users
 		.findOne({
 			where : {
@@ -69,12 +68,12 @@ init.app.get('/page/:page', function (req, res) {
 			}
 		})
 		.then(function(user){
-			data.user = user;
-			res.render("index.html", data);
+			init.data.user = user;
+			res.render("index.html", init.data);
 		});
 	} else {
 		// render index
-		res.render("index.html", data);
+		res.render("index.html", init.data);
 	}
 });
 
@@ -87,8 +86,8 @@ init.app.get('/signout', function (req, res) {
 /*catch 404!*/
 init.app.get('*', function (req, res) {
 	// set 404 page
-	data.content = "errors/error_page_not_found.html";
-	res.render("index.html", data);
+	init.data.content = "errors/error_page_not_found.html";
+	res.render("index.html", init.data);
 });
 
 
@@ -129,9 +128,11 @@ init.app.post('/user/signin', function(req, res){
  */
 init.app.post('/user/register', function(req, res){
 	// register data
-	var registerData = data;
+	var registerData = req.body;
 	registerData.name = registerData.fname;
-	// login user
+	delete registerData.fname;
+
+	// register user
 	model.users.createUser(registerData)
 	.then(function(user){
 		res.json({error:false, content:user});
@@ -148,7 +149,22 @@ init.app.post('/user/register', function(req, res){
  * @return {[type]}          [description]
  */
 init.app.post('/user/profile/update', init.upload.single('profile_image'), function(req, res){
-	console.log(req.body);
-	console.log(req.file);
-	res.send("ok!");
+	var userData = {};
+	userData.name  = req.body.profile_name;
+	userData.email = req.body.profile_email;
+	userData.id    = req.body.profile_id;
+
+	// check if image exists
+	if (typeof req.file != 'undefined') {
+		userData.image = req.file.originalname;
+	}
+
+	// update user
+	model.users.updateUser(userData)
+	.then(function(user){
+		res.redirect('/page/profile');
+	})
+	.catch(function(error){
+		res.redirect('page/profile?update=false');
+	});
 })
